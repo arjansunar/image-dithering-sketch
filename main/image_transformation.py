@@ -17,9 +17,12 @@ def image_to_sketch(img_path):
 
     sketch = cv2.divide(grey_img, invertedblur, scale=256.0)
 
-    cv2.imwrite("sketch.png", sketch)  # converted image is saved as mentioned name
+    out_path ="result/sketch.png"
+    # cv2.imwrite(out_path, sketch)  # converted image is saved as mentioned name
+    return sketch
     
-def quantize_img(img_path,factor: int): 
+def quantize_img(img_path: str,factor: int): 
+    # print(type(img_path))
     img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE) 
     newImg = np.zeros(img.shape, np.uint8)
     # img= cv2.bitwise_not(img)
@@ -41,8 +44,9 @@ def quantize_img(img_path,factor: int):
             newImg[y][x] = gray_val
             
     # grey_scaled = cv2.cvtColor(newImg, cv2.COLOR_BGR2GRAY)
-    cv2.imwrite('quant_img.png',newImg) 
-    return newImg       
+    # out_path = 'result/quant_img.png'
+    # cv2.imwrite(out_path,newImg) 
+    return newImg
             
             
             
@@ -68,8 +72,11 @@ def image_to_dithering(img_path):
             if (x - 1 >= 0) and (y + 1 < h): 
                 img[y + 1, x - 1] += error * 0.1875 # left, down, 3 / 16
 
-    cv2.imwrite('dither_img.png', (img*255).astype('uint8'))
+    # cv2.imwrite('result/dither_img.png', (img*255).astype('uint8'))
+    return (img*255).astype('uint8')
 
-image_to_dithering('image.jpeg')
-quantize_img('image.jpeg',3)
-image_to_sketch('image2.jpeg')
+
+if __name__ == "__main__":
+    # image_to_dithering('image.jpeg')
+    quantize_img('/home/rjan/Documents/college_stuffs/applied_programming_group_project/image_to_sketch/main/image.jpeg',3)
+    # image_to_sketch('image.jpeg')
