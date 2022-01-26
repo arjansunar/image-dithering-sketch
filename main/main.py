@@ -1,9 +1,7 @@
-from ast import Lambda
 import tkinter as tk
 from tkinter import *
-from tkinter import Label, filedialog as fd
-from tkinter.filedialog import askopenfile
-from turtle import bgcolor
+from tkinter import filedialog
+
 from PIL import Image, ImageTk
 # logic module for image transformation
 from image_transformation import image_to_dithering,image_to_sketch,quantize_img
@@ -14,7 +12,7 @@ app.title("Image Transformer") # setting title of app
 app.geometry("350x350+500+200") # window size & positioning from left and top
 app.configure(bg="#856ff8", bd=0, highlightthickness=0, relief='ridge')
 
-label = tk.Label(app, text = 'Image\nTransformer', height=8, bg="#856ff8").pack(side="top") # pack is used to show the object in the app
+label = tk.Label(app, text = 'ImageTransFormer', height=3, bg="#856ff8", font=("Arial", 22)).pack(side="top") # pack is used to show the object in the app
 
 # display function
 def display(img_path,cv2_img_arr):
@@ -28,7 +26,6 @@ def display(img_path,cv2_img_arr):
     # Create a photoimage object of the image in the path
     image1 = Image.open(img_path)
     image2 = Image.fromarray(cv2_img_arr)
-    # image2 = Image.open(out_path)
 
     aspect_ratio = image1.width /image1.height
     image1 = image1.resize((300, int(300 / aspect_ratio)))
@@ -36,7 +33,7 @@ def display(img_path,cv2_img_arr):
 
     input_img = ImageTk.PhotoImage(image1)
     out_img = ImageTk.PhotoImage(image2)
-    # Label(newWindow,text ="This is a new window").pack()
+
     # Constructing the first frame, frame1
     b1=LabelFrame(pane)
     inp_label = Label(b1, text="Input image")
@@ -56,11 +53,10 @@ def display(img_path,cv2_img_arr):
     output_image_label.pack()
     b2.pack(side="right",fill=BOTH , expand=TRUE)
 
-
 # button function
 def upload_file():
     f_types = [('Jpeg Files', '*.jpeg'),('Jpg Files', '*.jpg'),('PNG Files','*.png')]   # type of files to select 
-    filename = tk.filedialog.askopenfilename(multiple=True,filetypes=f_types)
+    filename = filedialog.askopenfilename(multiple=True,filetypes=f_types)
     if filename:
         filename = filename[0]
         uploadBtn_text.set("Image uploaded")
@@ -96,10 +92,5 @@ upBtn= tk.Button(app,textvariable=uploadBtn_text,command= disable_btn
                 bd=0, highlightthickness=0, relief='ridge')
 uploadBtn_text.set("Upload image")
 upBtn.pack()
-
-# display("/home/rjan/Documents/college_stuffs/applied_programming_group_project/image_to_sketch/main/image.jpeg", 
-# quantize_img("/home/rjan/Documents/college_stuffs/applied_programming_group_project/image_to_sketch/main/image.jpeg", 4)
-        
-#         )
 
 app.mainloop() # ending of interface
