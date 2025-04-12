@@ -66,7 +66,6 @@ def upload_file():
     ]  # type of files to select
     filename = filedialog.askopenfilename(filetypes=f_types)
     if filename:
-        filename = filename[0]
         uploadBtn_text.set("Image uploaded")
 
         quanBtn_text = tk.StringVar()
@@ -141,4 +140,3 @@ uploadBtn_text.set("Upload image")
 upBtn.pack()
 
 app.mainloop()  # ending of interface
-

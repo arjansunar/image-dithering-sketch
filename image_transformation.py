@@ -58,7 +58,7 @@ def image_to_dithering(img_path):
 if __name__ == "__main__":
     # image_to_dithering('image.jpeg')
     quantize_img(
-        "/home/rjan/Documents/college_stuffs/applied_programming_group_project/image_to_sketch/main/image.jpeg",
+        "./image.jpeg",
         3,
     )
     # image_to_sketch('image.jpeg')
