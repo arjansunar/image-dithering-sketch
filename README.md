@@ -8,3 +8,9 @@ Install packages using [uv](https://github.com/astral-sh/uv)
 uv venv
 uv pip install
 ```
+
+## Run application
+
+```bash
+uv run main.py
+```
